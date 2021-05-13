@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PersonnageController!{% endblock %}
+
+{% block monTitre %}Select your character{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr class="thead-dark">
+            <th>image</th>
+            <th>Nom</th>
+            <th>Age</th>
+            <th>Sexe</th>
+            <th>Force</th>
+            <th>Agilité</th>
+            <th>Intelligence</th>
+        </tr>
+        <tbody>
+            {% for player in players %}
+            <tr>
+                <td><img src="{{ asset('images/personnages/' ~ player.nom ~ '.png') }}" </td>
+                <td>{{ player.nom }}</td>
+                <td>{{ player.age }}</td>
+                <td> 
+                    {% if player.sexe %}
+                        Homme
+                        {% else %}
+                        Femme
+                    {% endif %}
+                    {{ player.sexe }}
+                </td>
+                <td>{{ player.carac.force }}</td>
+                <td>{{ player.carac.agi }}</td>
+                <td>{{ player.carac.intel }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {# <ul>
+        <li><img src="{{ asset('/images/personnages/Marc.png')}}" alt="avatar guerrier">
+        <li>Nom : {{ pseudo }}</li>
+        <li>Age : {{ age }}</li>
+        <li>Force : {{ carac.force }}</li>
+        <li>Agilité : {{ carac.agi }}</li>
+        <li>Intelligence : {{ carac.intel }}</li>
+    </ul> #}
+    {% endblock %}
