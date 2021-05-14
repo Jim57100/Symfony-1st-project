@@ -6,7 +6,8 @@
 
 {% block body %}
     <table class="table">
-        <tr class="thead-dark">
+        <thead class="thead-dark"> 
+        <tr>
             <th>image</th>
             <th>Nom</th>
             <th>Age</th>
@@ -15,19 +16,19 @@
             <th>Agilité</th>
             <th>Intelligence</th>
         </tr>
+        </thead>
         <tbody>
             {% for player in players %}
             <tr>
                 <td><img src="{{ asset('images/personnages/' ~ player.nom ~ '.png') }}" </td>
-                <td>{{ player.nom }}</td>
+                <td><a href="{{ path('afficher_personnage', {'nom' : player.nom|lower }) }}">{{ player.nom }}</a></td>
                 <td>{{ player.age }}</td>
                 <td> 
-                    {% if player.sexe %}
+                    {% if player.genre %}
                         Homme
                         {% else %}
                         Femme
                     {% endif %}
-                    {{ player.sexe }}
                 </td>
                 <td>{{ player.carac.force }}</td>
                 <td>{{ player.carac.agi }}</td>
@@ -36,13 +37,4 @@
             {% endfor %}
         </tbody>
     </table>
-
-    {# <ul>
-        <li><img src="{{ asset('/images/personnages/Marc.png')}}" alt="avatar guerrier">
-        <li>Nom : {{ pseudo }}</li>
-        <li>Age : {{ age }}</li>
-        <li>Force : {{ carac.force }}</li>
-        <li>Agilité : {{ carac.agi }}</li>
-        <li>Intelligence : {{ carac.intel }}</li>
-    </ul> #}
     {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block monTitre %}Select your weapon{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <thead class="thead-dark"> 
+            <tr>
+                <th>image</th>
+                <th>Nom</th>
+                <th>Dégats</th>
+                <th>Dextérité</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for arme in armes %}
+            <tr>
+                <td><img src="{{ asset('images/armes/' ~ arme.nom|replace({'é':'e'}) ~ '.png') }}"></td>
+                <td><a href="{{ path('afficher_armes', {'nom' : arme.nom|replace({'é':'e'}) }) }}">{{ arme.nom }}</a></td>
+                <td>{{ arme.carac.degats }}</td>
+                <td>{{ arme.carac.dexterite }}</td>
+           </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
